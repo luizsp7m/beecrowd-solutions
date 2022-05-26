@@ -1,15 +1,16 @@
 const input = require("fs").readFileSync("stdin", "utf8");
 
-let LINES = input.split("\r\n");
+let LINES = input.split("\n");
 
 let i = 0;
+
+let quebra_linha = 0;
 
 while (Number(LINES[i]) !== 0) {
   let qtd_nomes = Number(LINES[i]);
   let x = 1;
   let nomes = [];
   let qtd_nome_maior = 0;
-  let nomes_formatado = [];
 
   while (x <= qtd_nomes) {
     nomes.push(LINES[i + x]);
@@ -21,6 +22,8 @@ while (Number(LINES[i]) !== 0) {
       qtd_nome_maior = nome.length;
   });
 
+  if (quebra_linha > 0) console.log("");
+
   nomes.map(nome => {
     let nome_formatado = "";
 
@@ -28,10 +31,12 @@ while (Number(LINES[i]) !== 0) {
       nome_formatado += " ";
 
     nome_formatado += nome;
-    nomes_formatado.push(nome_formatado);
+
+    if (nome_formatado.trim().length > 0)
+      console.log(`${nome_formatado}`);
   });
 
-  nomes_formatado.map(nome => console.log(nome));
-
   i = i + qtd_nomes + 1;
+
+  teste++;
 }
